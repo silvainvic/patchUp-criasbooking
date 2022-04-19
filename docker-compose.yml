@@ -13,3 +13,19 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - 3306:3306
+      
+  back-end:
+    image: node:latest
+    container_name: back-end
+    restart: always
+    ports:
+      - 3001:3001
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./back-end:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npx sequelize db:migrate && npm run debug"
