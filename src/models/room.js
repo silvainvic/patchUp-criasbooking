@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = (sequelize, DataTypes) => {
   const Room = sequelize.define("Room", {
     name: {
@@ -9,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { timestaps: false });
   
   Room.associate = (models) => {
-    Room.hasMany(models.Reservations,
+    Room.hasMany(models.Reservation,
       { foreignKey: 'roomId', as: 'reservations' });
   }
 
