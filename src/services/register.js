@@ -1,4 +1,4 @@
-// const { User } = require('../models/index');
+const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 
 const jwtConfig = {
@@ -6,12 +6,14 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-module.exports = async ({ email, password }) => {
-  // const already = await User.findOne({ where: { email } });
-  // if (already) return { code: 409, message: 'User already exists' };
-  //await User.create({ email, password });
+module.exports = async ({ name, email, password }) => {
+  const already = await User.findOne({ where: { email } });
+
+  if (already) return { code: 409, message: 'User already exists' };
+
+  const user =  User.create({ name: 'null', email, password });
 
   const token = jwt.sign({ email }, "criasbook", jwtConfig);
 
-  return {data: {email, password, token} };
+  return {data: {email, password, token, user} };
 }
