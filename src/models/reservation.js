@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = (sequelize, DataTypes) => {
   const Reservation = sequelize.define("Reservation", {
     days: { type: DataTypes.INTEGER, allowNull: false },
@@ -7,16 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     totalPrice: { type: DataTypes.INTEGER, allowNull: false },
   }, {timestaps: false});
 
-  
-  models.Room.belongsTo(models.User, {
-    as: 'users',
-    foreignKey: 'roomId',
-  });
-
-  models.User.belongsTo(models.Room, {
-    as: 'rooms',
-    foreignKey: 'userId',
-  });
+  Reservation.associate = (models) => {
+    Reservation.belongsTo(models.User, {as: 'user', foreignKey: 'userId',})
+  }
+  Reservation.associate = (models) => {
+    Reservation.belongsTo(models.Room, {as: 'rooms', foreignKey: 'roomId',})
+  }
 
   return Reservation;
 };
