@@ -5,5 +5,5 @@ module.exports = async ({ body: { name, email, password } }, res, next) => {
 
   if (message) return res.status(code).json({ message });
 
-  return res.status(200).json({ data });
+  next();
 }
