@@ -16,7 +16,7 @@ const login = async ({ email, password }) => {
 
   const token = jwt.sign({ email, }, "teste", jwtConfig);
 
-  return token;
+  return { token };
 };
 
 module.exports = { login };

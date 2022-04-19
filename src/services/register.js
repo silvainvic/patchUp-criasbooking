@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
+const res = require('express/lib/response');
 
 const jwtConfig = {
   expiresIn: '1d',
@@ -11,9 +12,7 @@ module.exports = async ({ name, email, password }) => {
 
   if (already) return { code: 409, message: 'User already exists' };
 
-  const user =  User.create({ name: 'null', email, password });
-
-  const token = jwt.sign({ email }, "criasbook", jwtConfig);
-
-  return {data: {email, password, token, user} };
+  const user = await User.create({ name, email, password });
+  
+  return { data: user.dataValues };
 }
