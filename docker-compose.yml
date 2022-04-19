@@ -18,6 +18,8 @@ services:
     image: node:latest
     container_name: back-end
     restart: always
+    # env_file:
+    #   - ./.env
     ports:
       - 3001:3001
     environment:
@@ -29,3 +31,19 @@ services:
       - ./back-end:/usr/app
     working_dir: /usr/app
     command: bash -c "npm install && npx sequelize db:migrate && npm run debug"
+  
+  # front-end:
+  #   image: node:latest
+  #   container_name: front-end
+  #   restart: always
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     BACK_HOST: back-end
+  #     BACK_PORT: 3001
+  #   volumes:
+  #     - ./front-end:/usr/app
+  #   working_dir: /usr/app
+  #   command: bash -c "npm install && npm start"
