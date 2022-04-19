@@ -9,9 +9,15 @@ const reservationSchema = Joi.object({
 });
 
 const userSchema = Joi.object({
+  name: Joi.string().min(6).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
 });
+
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+})
 
 const isValidInputs = (req, res, next) => {
   const { error } = reservationSchema.validate(req.body);
@@ -29,4 +35,12 @@ const isValidRegister = (req, res, next) => {
   next();
 };
 
-module.exports = { isValidInputs, isValidRegister };
+const isValidLogin = (req, res, next) => {
+  const { error } = loginSchema.validate(req.body);
+
+  if(error) return res.status(400).json(error.message);
+
+  next();
+};
+
+module.exports = { isValidInputs, isValidRegister, isValidLogin };
