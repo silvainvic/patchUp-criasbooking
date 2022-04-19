@@ -72,3 +72,36 @@ axios.post('http://140.238.186.141:3001/reservations', {
 
 ```
 ---
+
+# Desafio parte 2 de 3 - Patch-up!
+
+Este repositório é dedicado a exercícios complementares fora do conteúdo do course e das aulas ao vivo #VQV
+
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do desafio a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos (este desafio não possui avaliação, mesmo sendo necessário o push do resultado final).
+
+# Contexto
+
+Um novo conjunto de requisitos foi definido para esta [sprint](https://pt.wikipedia.org/wiki/Sprint_(desenvolvimento_de_software)) no projeto do portal de turismo que você e sua equipe estão trabalhando.
+
+Após implementar a reserva consumindo a API da empresa parceira Crias Booking, é necessário refatorar com as funcionalidades de gestão destas reservas e maior estabilidade na aplicação. 
+
+Para isto as regras de negócio desta sprint são:
+
+- validar as entradas recebidas no endpoint de reservas, garantindo que não tentaremos consumir a API da Crias Booking enviando dados incompletos ou no formato não esperado pela API;
+- criar um endpoint de consulta das reservas que retorne todas as reservas de um cliente:
+   - este endpoint também necessita que os dados sejam validados antes de enviar a pesquisa ao banco de dados;
+   - esta pesquisa somente pode ser feita pelo próprio usuário autenticado;
+- rodar a aplicação em um contêiner Docker;
+
+---
+
+## O que deverá ser desenvolvido
+
+Você vai arquiteturar e desenvolver a continuidade da API do sistema de portal de turismo. 
+
+### Sugestões para o desenvolvimento:
+
+- implemente o endpoint de consulta, use um cliente fixo
+- refatore usando a autenticação, extraindo os dados do cliente a partir do token para realizar a consulta
+- crie lógicas de validação dos inputs de maneira que seja possível seu reuso quando necessário
+- aplique validação nas entradas de dados das requisições
