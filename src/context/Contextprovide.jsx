@@ -1,0 +1,13 @@
+import React, { useState } from 'react';
+
+import context from './context';
+
+export default function Contextprovide({ children }) {
+  const [dataApi, setDataApi] = useState([]);
+
+  return (
+    <context.Provider value={ { dataApi, setDataApi } }>
+      { children }
+    </context.Provider>
+  );
+}
