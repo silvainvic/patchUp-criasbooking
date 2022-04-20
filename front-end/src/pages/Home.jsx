@@ -8,8 +8,6 @@ export default function Home() {
   // const URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
   const URL_CRIAS = 'http://localhost:3001';
   const { setDataApi } = useContext(MyContext);
-  // console.log(setDataApi, 'Estou no "Home"');
-  console.log(URL_CRIAS, 'Estou no "Home"');
 
   useEffect(() => {
     fetch(URL_CRIAS)
@@ -24,7 +22,8 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <h1>{ console.log(process.env.REACT_APP_BACK_HOST) }, ops!</h1>
+      <h1>Home</h1>
+      { console.log(process.env.REACT_APP_BACK_HOST) }
     </div>
   );
 }
