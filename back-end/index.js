@@ -12,11 +12,13 @@ app.use(cors());
 //   optionsSuccessStatus: 200,
 // };
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app
+  .get('/', (req, res) => res.status(200).json({ test: 'test' }))
+  .get('/test', (_req, res) => res.send('test'));
 
-app.use(express.json());
-
-app.use(route);
+app
+  .use(express.json())
+  .use(route);
 
 app.listen(
   process.env.BACK_END_PORT,

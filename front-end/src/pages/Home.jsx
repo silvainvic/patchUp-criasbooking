@@ -1,37 +1,30 @@
 import React from 'react';
-// import { useContext, useEffect } from 'react';
-// import context from '../context/context';
+import MyContext from '../context/context';
+import { useContext, useEffect } from 'react';
 
 import Header from '../components/Header';
 
 export default function Home() {
   // const URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-  // const { dataApi, setDataApi } = useContext(context);
+  const URL_CRIAS = 'http://localhost:3001';
+  const { setDataApi } = useContext(MyContext);
+  // console.log(setDataApi, 'Estou no "Home"');
+  console.log(URL_CRIAS, 'Estou no "Home"');
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     setDataApi(data.meals[0]);
-  //     return data;
-  //   };
-  //   console.log(fetchData, 'Estou no "Home"');
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //   .then((response) => {
-    //     // console.log(response);
-    //     return response.json()
-    //   })
-    //   .then((data) => {
-    //     console.log(data, 'Data completo');
-    //     console.log(data.meals[0], 'Data apenas com os dados');
-    //     setDataApi(data)
-    //   });
-  // }, []);
+  useEffect(() => {
+    fetch(URL_CRIAS)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        setDataApi(data);
+      });
+  }, [setDataApi]);
 
   return (
     <div>
       <Header />
-      <h1>Homes</h1>
+      <h1>{ console.log(process.env.REACT_APP_BACK_HOST) }, ops!</h1>
     </div>
   );
 }
