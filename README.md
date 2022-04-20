@@ -105,3 +105,33 @@ Você vai arquiteturar e desenvolver a continuidade da API do sistema de portal 
 - refatore usando a autenticação, extraindo os dados do cliente a partir do token para realizar a consulta
 - crie lógicas de validação dos inputs de maneira que seja possível seu reuso quando necessário
 - aplique validação nas entradas de dados das requisições
+
+# Desafio parte 3 de 3 - Patch-up!
+
+Este repositório é dedicado a exercícios complementares fora do conteúdo do course e das aulas ao vivo #VQV
+
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do desafio a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos (este desafio não possui avaliação, mesmo sendo necessário o push do resultado final).
+
+# Contexto
+
+Sua equipe deve trabalhar em um novo sprint para o projeto de portal de turismo. Após implementar os requisitos centrais do projeto, que definiam a integração com API externa pelos usuários, nesta sprint foi definida a refatoração da camada de dados com o objetivo de garantir a sua integridade. Para isto é necessário associar corretamente o usuário às suas reservas.
+
+As regras de negócio desta sprint são:
+
+- refatorar o modelo de dados, criando o relacionamento entre usuário e reservas, de maneira que o id do usuário esteja presente na reserva, evitando futuras inconsistências por alterações do nome do usuário;
+   - como estamos persistindo os dados de reserva que foram gerados no serviço da Crias Booking, e neste o nome é utilizado, em caso de alterações do nome em nossa base local, perderíamos este relacionamento;
+- refatorar as pesquisas de reservas considerando o id do usuário e não o nome na reserva
+- refatorar o endpoint de pesquisa de reservas para que, em caso de um parâmetro `after` existir na query string, os resultados sejam apenas para as datas de reserva a partir da data informada em `after`.
+
+---
+
+## O que deverá ser desenvolvido
+
+Você vai arquiteturar e desenvolver a continuidade da API do sistema de portal de turismo. 
+
+### Sugestões para o desenvolvimento:
+
+- use novas migrations para alterar o banco de dados, não faça sobre as mesmas
+- refatore a rotina que grava os dados de retorno da API externa para gravar o id de retorno (não é o mesmo campo id interno) e o id do usuário
+- refatore as rotinas envolvidas na pesquisa de reservas para considerar o id do usuário ao invés do nome
+- refatore as rotinas envolvidas na pesquisa de reservas para considerar um parâmetro de query `after` - lembre-se de trabalhar com a data no formato YYYY-MM-DD, por ex: 2022-04-20
