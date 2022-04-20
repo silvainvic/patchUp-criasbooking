@@ -1,4 +1,4 @@
-const { parsed: { PORT } } = require('dotenv').config();
+// const { parsed: { PORT } } = require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -18,4 +18,7 @@ app.use(express.json());
 
 app.use(route);
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+app.listen(
+  process.env.BACK_END_PORT,
+  () => console.log(`Example app listening on port ${process.env.BACK_END_PORT}!`),
+);
