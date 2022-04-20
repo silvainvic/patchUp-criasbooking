@@ -12,6 +12,6 @@ route.get('/reservations', (req, res) => {
 route.post('/reservations', isValidInputs, consumeAPI);
 
 route.post('/login', login)
-route.post('/register', isValidRegister, register, login);
+route.post('/register', isValidRegister, register);
 
 module.exports = route;
