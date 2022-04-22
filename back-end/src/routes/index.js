@@ -9,9 +9,9 @@ route.get('/reservations', (req, res) => {
   return res.status(200).end();
 });
 
-route.post('/reservations', isValidInputs, consumeAPI);
-
-route.post('/login', login)
-route.post('/register', isValidRegister, register);
+route
+  .post('/reservations', isValidInputs, consumeAPI)
+  .post('/login', login)
+  .post('/register', isValidRegister, register);
 
 module.exports = route;
