@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Forms from "../components/Forms";
 
-import setLocalStorage from "../service";
-
 export default function UserRegister() {
   const history = useLocation();
+  const [dataForm, setDataForm] = useState({});
 
   const getDataForm = (event) => {
     const { registerInputName, registerInputEmail, registerInputPassword } = event;
@@ -29,8 +28,8 @@ export default function UserRegister() {
         return response.json()
       })
       .then((data) => {
-        // console.log(data); //{ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc0Bhc2RmLmNvbSIsImlhdCI6MTY1MDQ5MjU0NSwiZXhwIjoxNjUwNTc4OTQ1fQ.T-D4haOVJNW7lejUJ6iLyxF7dXDDXnG8KzY4bNUXmrU" }
-        setLocalStorage('token', data);
+        console.log('Dentro do then: ', data);
+        setDataForm(JSON.parse(data));
       });
   };
 
@@ -38,6 +37,7 @@ export default function UserRegister() {
       <div>
       <h1>UserRegister</h1>
       <Forms history={ history.pathname } getDataForm={ getDataForm }/>
+      <h2>Retorno da API: { console.log(dataForm) }</h2>
       </div>
   );
 }
