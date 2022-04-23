@@ -8,11 +8,16 @@ const jwtConfig = {
 };
 
 module.exports = async ({ name, email, password }) => {
-  const already = await User.findOne({ where: { email } });
+  try {
+    const already = await User.findOne({ where: { email } });
 
-  if (already) return { code: 409, message: 'User already exists' };
-
-  const user = await User.create({ name, email, password });
+    if (already) return { code: 409, message: 'User already exists' };
   
-  return { data: user.dataValues };
+    const user = await User.create({ name, email, password });
+    
+    return { data: user.dataValues };
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
 }
