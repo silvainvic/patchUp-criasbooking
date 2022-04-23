@@ -7,8 +7,9 @@ import { setLocalStorage } from "../service/serviceLocalStorage";
 export default function Login() {
   const history = useLocation();
 
-  const getDataForm = (event) => {
-    const { email, password } = event;
+  const getDataForm = (event, data) => {
+    event.preventDefault();
+    const { email, password } = data;
 
     const URL_CRIAS = 'http://localhost:3001/login';
 
@@ -26,9 +27,9 @@ export default function Login() {
       .then((response) => {
         return response.json()
       })
-      .then((data) => {
-        // console.log('Dentro do segundo "then" no arquivo "/pages/Login.jsx" ', data);
-        setLocalStorage('Token', data);
+      .then((token) => {
+        // console.log('Dentro do segundo "then" no arquivo "/pages/Login.jsx" ', token);
+        setLocalStorage('Token', token);
       });
   };
 
@@ -36,8 +37,8 @@ export default function Login() {
     <div>
       <h1>Login</h1>
       <div>
-        <Forms history={ history.pathname } getDataForm={ getDataForm }/>
-      </div>  
+        <Forms history={history.pathname} getDataForm={getDataForm} />
+      </div>
     </div>
   );
 }

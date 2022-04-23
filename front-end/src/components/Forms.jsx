@@ -14,7 +14,7 @@ export default function Forms({ history, getDataForm }) {
     switch (pathname) {
       case "/login":
         return (
-          <form>
+          <form onSubmit={ (event) => getDataForm(event, dataForm) }>
             <label htmlFor="registerEmail">
               Email:
               <input id="registerEmail" name="email" type="email" onChange={ handleChange } placeholder="Digite seu email" />
@@ -23,7 +23,7 @@ export default function Forms({ history, getDataForm }) {
               Password:
               <input id="registerPassword" name="password" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
             </label>
-            <button type="button" onClick={ () => getDataForm(dataForm) }>Entrar</button>
+            <input type="submit" value="Enter" />
           </form>
         );
        default:
@@ -48,8 +48,8 @@ export default function Forms({ history, getDataForm }) {
   };
 
   return (
-    <form>
+    <div>
       { selectForm(history) }
-    </form>
+    </div>
   );
 }
