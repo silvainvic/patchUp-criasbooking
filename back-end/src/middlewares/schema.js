@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const stt = require('../utils/status');
 
 const reservationSchema = Joi.object({
   client: Joi.string().min(3).required(),
@@ -21,9 +20,9 @@ const loginSchema = Joi.object({
 })
 
 const isValidInputs = (req, res, next) => {
-  // const { error } = reservationSchema.validate(req.body);
+  const { error } = reservationSchema.validate(req.body);
 
-  if (error) return res.status(stt.STATUS_BAD_REQUEST).json(error.message);
+  if (error) return res.status(400).json(error.message);
 
   next();
 };
@@ -31,7 +30,7 @@ const isValidInputs = (req, res, next) => {
 const isValidRegister = (req, res, next) => {
   const { error } = userSchema.validate(req.body);
 
-  if(error) return res.status(stt.STATUS_BAD_REQUEST).json(error.message);
+  if(error) return res.status(400).json(error.message);
 
   next();
 };
@@ -39,7 +38,7 @@ const isValidRegister = (req, res, next) => {
 const isValidLogin = (req, res, next) => {
   const { error } = loginSchema.validate(req.body);
 
-  if(error) return res.status(stt.STATUS_BAD_REQUEST).json(error.message);
+  if(error) return res.status(400).json(error.message);
 
   next();
 };
