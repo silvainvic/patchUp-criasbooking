@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
+import { setLocalStorage } from "../service/serviceLocalStorage";
 import Forms from "../components/Forms";
 
 export default function UserRegister() {
   const history = useLocation();
-  const [dataForm, setDataForm] = useState({});
 
-  const getDataForm = (event) => {
-    const { registerInputName, registerInputEmail, registerInputPassword } = event;
+  const getDataForm = (event, data) => {
+    event.preventDefault();
+    const { registerInputName, registerInputEmail, registerInputPassword } = data;
 
     const URL_CRIAS = 'http://localhost:3001/register';
 
@@ -25,11 +26,11 @@ export default function UserRegister() {
       }),
     })
       .then((response) => {
-        return response.json()
+        return response.json();
       })
-      .then((data) => {
-        console.log('Dentro do then: ', data);
-        setDataForm(JSON.parse(data));
+      .then((d) => {
+        console.log('Dentro do segundo "then" no arquivo "/pages/UserRegister.jsx" ', d);
+        setLocalStorage('Message', d);
       });
   };
 
@@ -37,7 +38,6 @@ export default function UserRegister() {
       <div>
       <h1>UserRegister</h1>
       <Forms history={ history.pathname } getDataForm={ getDataForm }/>
-      <h2>Retorno da API: { console.log(dataForm) }</h2>
       </div>
   );
 }

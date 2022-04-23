@@ -28,7 +28,7 @@ export default function Forms({ history, getDataForm }) {
         );
        default:
         return (
-          <form>
+          <form onSubmit={ (event) => getDataForm(event, dataForm) }>
             <label htmlFor="registerName">
               Name:
               <input id="registerName" name="registerInputName" type="text" onChange={ handleChange } placeholder="Digite seu nome completo" />
@@ -41,7 +41,7 @@ export default function Forms({ history, getDataForm }) {
               Password:
               <input id="registerPassword" name="registerInputPassword" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
              </label>
-              <button type="button" onClick={ () => getDataForm(dataForm) }>Cadastrar</button>
+              <input type="submit" value="Cadastrar" />
           </form>
         );
     };
