@@ -10,7 +10,7 @@ route.get('/reservations', (req, res) => {
 });
 
 route
-  .post('/reservations', isValidInputs, consumeAPI)
+  .post('/reservations', isValidInputs, consumeAPI) // API fora do "ar"
   .post('/login', login)
   .post('/register', isValidRegister, register);
 
