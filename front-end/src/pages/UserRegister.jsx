@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { setLocalStorage } from "../service/serviceLocalStorage";
 import { fetchRegister } from "../service/fetchApi";
 import Forms from "../components/Forms";
+import { getLocalStorage } from "../service/serviceLocalStorage";
 
 export default function UserRegister() {
   const [registerState, setRegisterState] = useState('');
   const history = useLocation();
+  const navigate = useNavigate();
 
   const getDataForm = async (event, data) => {
     setRegisterState();
@@ -24,6 +26,14 @@ export default function UserRegister() {
       setRegisterState(dataFetchApi[0]);
     }
   };
+
+  useEffect(() => {
+    const dataApi = getLocalStorage('Token');
+  
+    if (dataApi) {
+      navigate('/');
+    }
+}, []);
 
   return (
       <div>
