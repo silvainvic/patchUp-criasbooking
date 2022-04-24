@@ -1,20 +1,18 @@
 
-const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+const { createToken } = require('./manageToken');
 
-const jwtConfig = {
-  expiresIn: '1d',
-  algorithm: 'HS256',
-};
-
-const login = async ({ email, password }) => {
+const login = async ({ email, password }, ip) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user || user.password !== password) {
     throw ({ code: 400, message: 'Invalid fields'});
   }
-
-  const token = jwt.sign({ email, }, "teste", jwtConfig);
+  if (!ip) {
+    throw ({ code: 400, message: 'Not ip'});
+  }
+  
+  const token = createToken(email, password, ip);
 
   return { token };
 };
