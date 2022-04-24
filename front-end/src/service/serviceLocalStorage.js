@@ -1,5 +1,5 @@
 export function setLocalStorage(key, value) {
-  if (value.token) {
+  if (value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 }
