@@ -23,7 +23,6 @@ export default function Home() {
     <div>
       <Header />
       <h1>Home</h1>
-      { console.log(process.env.REACT_APP_BACK_HOST) }
     </div>
   );
 }
