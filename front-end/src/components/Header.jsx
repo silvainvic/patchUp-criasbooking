@@ -1,5 +1,7 @@
 import React from "react";
 
+import { removeLocalStorage } from "../service/serviceLocalStorage";
+
 export default function Header() {
   return (
     <header>
@@ -11,6 +13,9 @@ export default function Header() {
       </div>
       <div>
         <h1>Header 03</h1>
+      </div>
+      <div>
+        <button type="button" onClick={ () => removeLocalStorage('Token') } >Sair</button>
       </div>
     </header>
   );
