@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <div>
+    <header>
       <div>
         <h1>Header 01</h1>
       </div>
@@ -12,6 +12,6 @@ export default function Header() {
       <div>
         <h1>Header 03</h1>
       </div>
-    </div>
+    </header>
   );
 }
