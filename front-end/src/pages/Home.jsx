@@ -9,7 +9,7 @@ export default function Home() {
 
   const selectRender = () => {
       return (
-        <div>
+        <div className="min-h-screen bg-slate-500">
           <Header />
           <h1>Home</h1>
         </div>
