@@ -4,7 +4,7 @@ import { removeLocalStorage } from "../service/serviceLocalStorage";
 
 export default function Header() {
   return (
-    <header className="flex bg-blue-700 w-11 min-h-full ">
+    <header className="bg-teste flex justify-content bg-blue-700 w-11 min-h-full ">
       <div>
         <h1>Header 01</h1>
       </div>
