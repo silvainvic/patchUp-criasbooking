@@ -26,8 +26,32 @@ export default function Forms({ history, getDataForm }) {
             </label>
             <input id="registerPassword" name="password" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
             <div id="id-button-form-login" className="flex justify-center space-x-12">
-              <input type="submit" value="Enter" />
-              <button onClick={() => navigate("/userRegister")}>Cadastre-se</button>
+              <input
+                class="
+                bg-green-900
+                hover:bg-purple-900
+                text-white
+                font-semibold
+                hover:text-white
+                py-2 px-4 border
+                border-white-500
+                hover:border-transparent
+                rounded"
+                type="submit" value="Enter" />
+              <button
+                class="
+                  bg-green-900
+                  hover:bg-purple-900
+                  text-white
+                  font-semibold
+                  hover:text-white
+                  py-2 px-4 border
+                  border-white-500
+                  hover:border-transparent
+                  rounded"
+                  onClick={() => navigate("/userRegister")}>
+                    Cadastre-se
+              </button>
             </div>
           </form>
         );
