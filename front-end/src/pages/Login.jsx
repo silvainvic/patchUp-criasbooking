@@ -43,6 +43,7 @@ export default function Login() {
         bg-white
         but
         flex flex-col items-center
+        space-y-8
     ">
       <div id="div-img-login">
           <img src={ imgLogo } alt="imagem-logo-criasbooking" />
@@ -51,7 +52,7 @@ export default function Login() {
         id="main-login"
         className="
           bg-green-500
-          w-3/4 h-60
+          w-1/2 h-72
           flex flex-col items-center justify-center
       ">
         <div
