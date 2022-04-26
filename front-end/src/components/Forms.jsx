@@ -16,15 +16,15 @@ export default function Forms({ history, getDataForm }) {
     switch (pathname) {
       case "/login":
         return (
-          <form className="flex flex-col space-y-6" onSubmit={ (event) => getDataForm(event, dataForm) }>
+          <form className="flex flex-col space-y-2" onSubmit={ (event) => getDataForm(event, dataForm) }>
             <label htmlFor="registerEmail">
               Email:
-              <input id="registerEmail" name="email" type="email" onChange={ handleChange } placeholder="Digite seu email" />
             </label>
+            <input id="registerEmail" name="email" type="email" onChange={ handleChange } placeholder="Digite seu email" />
             <label htmlFor="registerPassword">
               Password:
-              <input id="registerPassword" name="password" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
             </label>
+            <input id="registerPassword" name="password" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
             <div id="id-button-form-login" className="flex justify-center space-x-12">
               <input type="submit" value="Enter" />
               <button onClick={() => navigate("/userRegister")}>Cadastre-se</button>
