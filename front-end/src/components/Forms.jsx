@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Forms({ history, getDataForm }) {
   const [dataForm, setDataForm] = useState({});
+  const navigate = useNavigate()
 
   const handleChange = ({ target }) => {
     setDataForm({
@@ -14,7 +16,7 @@ export default function Forms({ history, getDataForm }) {
     switch (pathname) {
       case "/login":
         return (
-          <form onSubmit={ (event) => getDataForm(event, dataForm) }>
+          <form className="flex flex-col space-y-6" onSubmit={ (event) => getDataForm(event, dataForm) }>
             <label htmlFor="registerEmail">
               Email:
               <input id="registerEmail" name="email" type="email" onChange={ handleChange } placeholder="Digite seu email" />
@@ -23,7 +25,10 @@ export default function Forms({ history, getDataForm }) {
               Password:
               <input id="registerPassword" name="password" type="password" onChange={ handleChange } placeholder="Digite sua senha" />
             </label>
-            <input type="submit" value="Enter" />
+            <div id="id-button-form-login" className="flex justify-center space-x-12">
+              <input type="submit" value="Enter" />
+              <button onClick={() => navigate("/userRegister")}>Cadastre-se</button>
+            </div>
           </form>
         );
        default:
