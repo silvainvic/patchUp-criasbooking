@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'criasBooks': "url('/img/criasbookingimg.png')",
+        'criasBooks': "url('src/img/criasbookingimg.png')",
       },
       colors: {
         teste: '#000'
