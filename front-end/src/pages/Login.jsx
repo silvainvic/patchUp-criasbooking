@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Forms from "../components/Forms";
+import Footer from "../components/Footer";
+
 import { setLocalStorage } from "../service/serviceLocalStorage";
 import { fetchLogin } from "../service/fetchApi";
 import { getLocalStorage } from "../service/serviceLocalStorage";
+
+import imgLogo from "../img/criasbookingimg.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -32,12 +36,35 @@ export default function Login() {
 }, []);
 
   return (
-    <div>
-      <h1>Login</h1>
-      <div>
-        <Forms history={history.pathname} getDataForm={getDataForm} />
-        <button onClick={() => navigate("/userRegister")}>Cadastre-se</button>
+    <div
+      id="div-main-login"
+      className="
+        min-h-screen w-full
+        bg-white
+        but
+        flex flex-col items-center
+    ">
+      <div id="div-img-login">
+          <img src={ imgLogo } alt="imagem-logo-criasbooking" />
       </div>
+      <main
+        id="main-login"
+        className="
+          bg-green-500
+          w-3/4 h-60
+          flex flex-col items-center justify-center
+      ">
+        <div
+          id="div-form-login"
+          className="
+          flex flex-col items-center justify-center space-y-12
+          w-full
+          h-full"
+        >
+          <Forms history={history.pathname} getDataForm={getDataForm} />
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
