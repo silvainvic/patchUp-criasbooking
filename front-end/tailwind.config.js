@@ -2,6 +2,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
     extend: {
+      backgroundImage: {
+        'criasBooks': "url('/img/criasbookingimg.png')",
+      },
       colors: {
         teste: '#000'
       }
