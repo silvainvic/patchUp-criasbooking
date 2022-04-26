@@ -7,6 +7,8 @@ export default function Footer() {
       bg-green-900
       w-full
       h-24
+      absolute
+      bottom-0
     ">
       <h1>Footer</h1>
     </footer>
