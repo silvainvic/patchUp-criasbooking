@@ -36,9 +36,10 @@ export default function Login() {
   }, []);
 
   return (
-    <div
-      id="div-main-login"
-      className="
+    <>
+      <div
+        id="div-main-login"
+        className="
         min-h-screen w-full
         bg-white
         but
@@ -46,29 +47,30 @@ export default function Login() {
         items-center
         space-y-8
     "
-    >
-      <div id="div-img-login">
-        <img src={imgLogo} alt="imagem-logo-criasbooking" />
-      </div>
-      <main
-        id="main-login"
-        className="
+      >
+        <div id="div-img-login">
+          <img src={imgLogo} alt="imagem-logo-criasbooking" />
+        </div>
+        <main
+          id="main-login"
+          className="
           bg-green-500
           w-1/2 h-72
           flex flex-col items-center justify-center
       "
-      >
-        <div
-          id="div-form-login"
-          className="
+        >
+          <div
+            id="div-form-login"
+            className="
           flex flex-col items-center justify-center space-y-12
           w-full
           h-full"
-        >
-          <Forms history={history.pathname} getDataForm={getDataForm} />
-        </div>
-      </main>
+          >
+            <Forms history={history.pathname} getDataForm={getDataForm} />
+          </div>
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

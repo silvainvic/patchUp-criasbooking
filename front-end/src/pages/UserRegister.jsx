@@ -7,6 +7,7 @@ import Forms from '../components/Forms';
 import { getLocalStorage } from '../service/serviceLocalStorage';
 
 import imgLogo from '../img/criasbookingimg.png';
+import Footer from '../components/Footer';
 
 export default function UserRegister() {
   const [registerState, setRegisterState] = useState('');
@@ -43,13 +44,18 @@ export default function UserRegister() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-green-700 mt-10">UserRegister</h1>
-      <div id="div-img-login">
-        <img src={imgLogo} alt="imagem-logo-criasbooking" />
+    <>
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold text-green-700 mt-10">
+          UserRegister
+        </h1>
+        <div id="div-img-login">
+          <img src={imgLogo} alt="imagem-logo-criasbooking" />
+        </div>
+        <Forms history={history.pathname} getDataForm={getDataForm} />
+        {registerState && <h1>{registerState}</h1>}
       </div>
-      <Forms history={history.pathname} getDataForm={getDataForm} />
-      {registerState && <h1>{registerState}</h1>}
-    </div>
+      <Footer />
+    </>
   );
 }
