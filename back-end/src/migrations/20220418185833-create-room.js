@@ -17,14 +17,12 @@ module.exports = {
       dailyPrice: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      hotelId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {
