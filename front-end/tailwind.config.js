@@ -6,7 +6,7 @@ module.exports = {
         'criasBooks': "url('src/img/criasbookingimg.png')",
       },
       colors: {
-        teste: '#000'
+        theme: '#8bc640'
       }
     },
   },
