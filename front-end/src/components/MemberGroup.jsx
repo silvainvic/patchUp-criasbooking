@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaMailBulk } from 'react-icons/fa';
+import { MdWeb } from 'react-icons/md';
 
 export default function MemberGroup(props) {
   return (
@@ -25,6 +26,7 @@ export default function MemberGroup(props) {
           </a>
         </li>
         <li className="flex justify-center items-center">
+          <MdWeb />
           <a href={props.portfolio} class="text-white hover:text-gray-800 ml-1">
             Portfólio
           </a>
