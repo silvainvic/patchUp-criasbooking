@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Reservation = sequelize.define("Reservation", {
     days: { type: DataTypes.INTEGER, allowNull: false },
-    reservationDate: { type: DataTypes.DATE, allowNull: false },
+    reservationDateStart: { type: DataTypes.DATE, allowNull: false },
     totalPrice: { type: DataTypes.INTEGER, allowNull: false },
   }, {timestaps: false});
 
