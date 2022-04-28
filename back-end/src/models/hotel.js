@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Hotel.associate = (models) => {
-    Hotel.hasMany(models.Room, { foreignKey: 'hotelId', as: 'rooms' });
+    // Hotel.hasMany(models.Room, { foreignKey: 'hotelId', as: 'rooms' });
     Hotel.belongsTo(models.City, { foreignKey: 'cityId', as: 'city',});
   };
 };
