@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      img: {
+        type: Sequelize.STRING
+      },
       qtDoubleBed: {
         type: Sequelize.INTEGER
       },
