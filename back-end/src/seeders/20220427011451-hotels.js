@@ -2,23 +2,32 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    await queryInterface.bulkInsert('Hotels',
+    [
+      {
+        name: 'Hotel Ibis',
+        categoryStars: 2,
+        cityId: 1,
+      },
+      {
+        name: 'Hotel Castro',
+        categoryStars: 4,
+        cityId: 27,
+      },
+      {
+        name: 'Marina Park Hotel',
+        categoryStars: 5,
+        cityId: 6,
+      },
+      {
+        name: 'Natal Praia Hotel',
+        categoryStars: 4,
+        cityId: 20,
+      },
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Hotels', null, {});
   }
 };
