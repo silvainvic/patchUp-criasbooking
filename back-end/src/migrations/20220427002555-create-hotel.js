@@ -14,13 +14,11 @@ module.exports = {
       categoryStars: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      cityId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       }
     });
   },
