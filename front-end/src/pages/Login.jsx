@@ -45,6 +45,7 @@ export default function Login() {
         but
         flex flex-col
         items-center
+        justify-center
         space-y-8
     "
       >
