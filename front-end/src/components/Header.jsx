@@ -1,21 +1,32 @@
 import React from "react";
 
 import { removeLocalStorage } from "../service/serviceLocalStorage";
+import criasbooking2 from '../img/criasbooking2.png';
+import Search from "./Search";
 
 export default function Header() {
   return (
-    <header className="bg-teste flex justify-content bg-blue-700 w-11 min-h-full ">
+    <header
+      className="
+        bg-colorCriasBooking
+        flex justify-between items-center
+        h-28 w-full
+        pr-10"
+      >
       <div>
-        <h1>Header 01</h1>
+        <img className="h-28" src={criasbooking2} alt="" />
       </div>
       <div>
-        <h1>Header 02</h1>
+       <Search />
       </div>
       <div>
-        <h1>Header 03</h1>
-      </div>
-      <div>
-        <button type="button" onClick={ () => removeLocalStorage('Token') } >Sair</button>
+        <button
+          type="button"
+          class="btn btn-outline btn-accent"
+          onClick={ () => removeLocalStorage('Token') }
+        >
+          Sair
+        </button>
       </div>
     </header>
   );
