@@ -46,7 +46,7 @@ export default function Login() {
         flex flex-col
         items-center
         justify-center
-        space-y-8
+        space-y-6
     "
       >
         <div id="div-img-login">
