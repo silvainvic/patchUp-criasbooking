@@ -46,9 +46,6 @@ export default function UserRegister() {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-green-700 mt-10">
-          UserRegister
-        </h1>
         <div id="div-img-login">
           <img src={imgLogo} alt="imagem-logo-criasbooking" />
         </div>
