@@ -3,7 +3,11 @@ import React from "react";
 export default function Search() {
   return (
     <div>
-      <h1>Search</h1>
+      <input
+        type="text"
+        placeholder="Pesquise: Cidade - Estado - Hotel"
+        className="input input-bordered input-warning w-full max-w-xs"
+      />
     </div>
   );
 }
