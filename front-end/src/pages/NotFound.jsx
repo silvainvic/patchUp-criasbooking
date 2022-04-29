@@ -5,8 +5,8 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div>
+    <div id="main-div-notFound">
+      <div id="message-div-notFound">
           <h1>Ops! "Algo de errado não está certo"</h1>
           <h2>Página não encontrada</h2>
       </div>
