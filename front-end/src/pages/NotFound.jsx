@@ -10,7 +10,7 @@ export default function NotFound() {
           <h1>Ops! "Algo de errado não está certo"</h1>
           <h2>Página não encontrada</h2>
       </div>
-      <div>
+      <div id="button-return-notFound">
         <button onClick={ () => navigate('/') }>Voltar para Home</button>
       </div>
     </div>
