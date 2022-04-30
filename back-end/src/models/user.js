@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, { timestamps: false});
 
-  User.associate = (models) => {
-    User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
+  // };
 
   return User;
 };

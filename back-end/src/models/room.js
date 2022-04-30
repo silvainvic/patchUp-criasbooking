@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, { timestaps: false });
- 
+  
   Room.associate = (models) => {
     Room.hasMany(models.Reservation, { foreignKey: 'roomId', as: 'reservations' });
-    Room.belongsTo(models.Hotel, { foreignKey: 'hotelId', as: 'hotel',});
+    Room.belongsTo(models.Hotel, { foreignKey: 'hotelId', as: 'hotel', });
   };
-
-  return Room
+  
+  return Room;
 }

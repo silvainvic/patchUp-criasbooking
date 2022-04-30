@@ -9,20 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       img: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       qtDoubleBed: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       qtSingleBed: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       dailyPrice: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       hotelId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Hotel', key: 'id' }
+        references: { model: 'Hotels', key: 'id' }
       },
     });
   },
