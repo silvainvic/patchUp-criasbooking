@@ -17,10 +17,12 @@ export default function SelectReservation() {
   return (
     <div
       className="
-        flex w-full h-12 bg-ccolorCriasBooking"
+        flex justify-center
+        w-full h-12
+        bg-ccolorCriasBooking"
     >
-      <form>
-        <select name="state" >
+      <form className="w-full">
+        <select className="select select-success w-full max-w-xs" name="state" >
           {arr && arr.map((item, index) => (
             <option
               key={ index }
@@ -31,12 +33,12 @@ export default function SelectReservation() {
             </option>
           ))}
         </select>
-        <select name="city" >
+        <select className="select select-success w-full max-w-xs" name="city" >
           {stateCity
             ? ( <option value={ stateCity.city }>{ stateCity.city }</option> )
             : ( <option>Selecione uma estado</option> )}
         </select>
-        <select name="hotel" >
+        <select className="select select-success w-full max-w-xs" name="hotel" >
           {arrH && arrH.map((item, index) => (
             <option key={ index } value={ item.hotel }>{ item.hotel }</option>
           ))}
