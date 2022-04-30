@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Hotel = sequelize.define("Hotel", {
     name: {
@@ -16,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
-  });
+    },
+  }, { timestamps: false });
   
   return Hotel;
 };
