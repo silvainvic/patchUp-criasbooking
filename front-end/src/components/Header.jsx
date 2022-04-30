@@ -14,7 +14,7 @@ export default function Header() {
         pr-10"
       >
       <div>
-        <img className="h-28" src={criasbooking2} alt="" />
+        <img className="h-20" src={criasbooking2} alt="" />
       </div>
       <div>
        <Search />
