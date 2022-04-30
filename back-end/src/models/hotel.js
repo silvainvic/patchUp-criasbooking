@@ -5,14 +5,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    categoryStar: {
+    stars: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    state: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   });
-
-  Hotel.associate = (models) => {
-    // Hotel.hasMany(models.Room, { foreignKey: 'hotelId', as: 'rooms' });
-    Hotel.belongsTo(models.City, { foreignKey: 'cityId', as: 'city',});
-  };
 };

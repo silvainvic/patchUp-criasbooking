@@ -9,16 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        notNull: false,
       },
-      categoryStars: {
-        type: Sequelize.STRING
+      stars: {
+        type: Sequelize.STRING,
+        notNull: false,
       },
-      cityId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+      state: {
+        type: Sequelize.STRING,
+        notNull: false,
+      },
+      city: {
+        type: Sequelize.STRING,
+        notNull: false,
       }
     });
   },

@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    hotelId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   }, { timestaps: false });
  
   Room.associate = (models) => {

@@ -25,6 +25,10 @@ module.exports = {
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        references: {
+          model: 'Hotels',
+          key: 'id',
+        }
       },
     });
   },
