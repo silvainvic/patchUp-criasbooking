@@ -1,4 +1,5 @@
 import React from 'react';
+import { members } from '../data/members';
 import MemberGroup from './MemberGroup';
 
 export default function Footer() {
@@ -17,10 +18,17 @@ export default function Footer() {
         "
       >
         <div class="justify-between w-full mt-4 text-center lg:flex">
-          <MemberGroup name="Ary Barbosa" />
-          <MemberGroup name="Grazziano Fagundes" />
-          <MemberGroup name="Renata Magno" />
-          <MemberGroup name="Sávio Silva" />
+          {members.map((ele) => {
+            return (
+              <MemberGroup
+                image={ele.image}
+                name={ele.name}
+                linkedin={ele.linkedin}
+                github={ele.github}
+                portfolio={ele.portfolio}
+              />
+            );
+          })}
         </div>
       </div>
       <div class="flex justify-center -mt-12">
