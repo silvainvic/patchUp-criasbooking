@@ -22,13 +22,7 @@ module.exports = {
       },
       hotelId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Hotels',
-          key: 'id',
-        }
+        references: { model: 'Hotel', key: 'id' }
       },
     });
   },
