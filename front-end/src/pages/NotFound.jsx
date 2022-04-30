@@ -1,36 +1,50 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div id="main-div-notFound"
+    <div
       className="
-        w-full h-screen
-        flex flex-col items-center justify-center
-        bg-green-400
-        text-red-700 text-4xl
-        space-y-8"
+      flex
+      items-center
+      justify-center
+      w-screen
+      h-screen
+      bg-theme
+    "
     >
-      <div id="message-div-notFound"
-        className="flex flex-col items-center justify-center"
-      >
-          <h1>Ops! "Algo de errado não está certo"</h1>
-          <h2>Página não encontrada</h2>
-      </div>
-      <div id="button-return-notFound"
-        class="
-        bg-green-900
-        hover:bg-white
-        text-white hover:text-green-500
-        font-semibold
-        py-2 px-4 border
-        border-white-500 hover:border-black
-        hover:border-transparent
-        rounded"
-      >
-        <button onClick={ () => navigate('/') }>Voltar</button>
+      <div className="px-40 py-20 bg-white rounded-md shadow-xl">
+        <div className="flex flex-col items-center">
+          <h1 className="font-bold text-blue-600 text-9xl">404</h1>
+
+          <h6 className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
+            <span className="text-red-500">Oops!</span> Page not found
+          </h6>
+
+          <p className="mb-8 text-center text-gray-500 md:text-lg">
+            The page you’re looking for doesn’t exist.
+          </p>
+
+          <div className="w-1/2">
+            <lottie-player
+              src="https://assets10.lottiefiles.com/private_files/lf30_bfxeb0to.json"
+              background="transparent"
+              speed="1"
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+
+          <a
+            href=""
+            className="px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100"
+            onClick={() => navigate('/')}
+          >
+            Go home
+          </a>
+        </div>
       </div>
     </div>
   );
