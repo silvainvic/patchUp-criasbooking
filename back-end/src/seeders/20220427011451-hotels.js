@@ -6,23 +6,27 @@ module.exports = {
     [
       {
         name: 'Hotel Ibis',
-        categoryStars: 2,
-        cityId: 1,
+        stars: 2,
+        state: 'Sao Paulo',
+        city: 'Sao Paulo'
       },
       {
         name: 'Hotel Castro',
-        categoryStars: 4,
-        cityId: 27,
+        stars: 4,
+        state: 'Sao Paulo',
+        city: 'Caraguatatuba'
       },
       {
         name: 'Marina Park Hotel',
-        categoryStars: 5,
-        cityId: 6,
+        stars: 5,
+        state: 'Rio Grande do Sul',
+        city: 'Pelotas'
       },
       {
         name: 'Natal Praia Hotel',
-        categoryStars: 4,
-        cityId: 20,
+        stars: 4,
+        state: 'Piaui',
+        city: 'Teresina'
       },
     ], {});
   },
