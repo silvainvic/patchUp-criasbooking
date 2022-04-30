@@ -10,7 +10,7 @@ export default function Header() {
       className="
         bg-colorCriasBooking
         flex justify-between items-center
-        h-28 w-full
+        h-20 w-full
         pr-10"
       >
       <div>
