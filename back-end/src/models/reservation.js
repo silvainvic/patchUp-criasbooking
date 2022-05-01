@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     reservationDateStart: { type: DataTypes.DATE, allowNull: false },
     reservationDateEnd: { type: DataTypes.DATE, allowNull: false },
     totalPrice: { type: DataTypes.INTEGER, allowNull: false },
-  }, {timestaps: false});
+  }, { timestamps: false });
 
   Reservation.associate = (models) => {
     Reservation.belongsTo(models.User, {as: 'user', foreignKey: 'userId',})
