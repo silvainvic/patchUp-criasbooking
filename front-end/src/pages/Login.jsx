@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Forms from '../components/Forms';
@@ -11,6 +11,7 @@ import { getLocalStorage } from '../service/serviceLocalStorage';
 import imgLogo from '../img/criasbookingimg.png';
 
 export default function Login() {
+  const [loginState, setLoginState] = useState('');
   const navigate = useNavigate();
   const history = useLocation();
 
@@ -22,6 +23,7 @@ export default function Login() {
 
     if (dataFetchApi.token) {
       setLocalStorage('Token', dataFetchApi.token);
+      setLoginState(dataFetchApi.token);
     } else {
       alert('Usuário ou senha incorretos');
     }
@@ -30,10 +32,10 @@ export default function Login() {
   useEffect(() => {
     const dataApi = getLocalStorage('Token');
 
-    if (dataApi) {
+    if (dataApi || loginState) {
       navigate('/');
     }
-  }, []);
+  }, [loginState]);
 
   return (
     <>
