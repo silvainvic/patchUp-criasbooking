@@ -60,7 +60,6 @@ export async function fetchHotels() {
       return response.json();
     })
     .then((hotels) => {
-      console.log('kkkkkkkkkkk', hotels);
       return hotels;
     });
 }
