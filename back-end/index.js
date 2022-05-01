@@ -2,7 +2,10 @@
 
 const express = require('express');
 const cors = require('cors');
-const route = require('./src/routes');
+// const route = require('./src/routes');
+const loginRoute = require('./src/routes/login');
+const registerRoute = require('./src/routes/register');
+const hotelsRoute = require('./src/routes/hotels');
 const app = express();
 
 app.use(cors());
@@ -17,8 +20,13 @@ app
   .get('/test', (_req, res) => res.send('test'));
 
 app
-  .use(express.json())
-  .use(route);
+  .use(express.json());
+
+app
+  .use('/login', loginRoute)
+  .use('/register', registerRoute)
+  .use('/hotels', hotelsRoute);
+  // .use(route);
 
 app.listen(
   process.env.BACK_END_PORT,
