@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-  }, { timestaps: false });
+  }, { timestamps: false });
   
   Room.associate = (models) => {
     Room.hasMany(models.Reservation, { foreignKey: 'roomId', as: 'reservations' });
