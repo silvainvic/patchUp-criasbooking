@@ -6,6 +6,7 @@ const cors = require('cors');
 const loginRoute = require('./src/routes/login');
 const registerRoute = require('./src/routes/register');
 const hotelsRoute = require('./src/routes/hotels');
+const roomRoute = require('./src/routes/room');
 const app = express();
 
 app.use(cors());
@@ -25,7 +26,8 @@ app
 app
   .use('/login', loginRoute)
   .use('/register', registerRoute)
-  .use('/hotels', hotelsRoute);
+  .use('/hotels', hotelsRoute)
+  .use('/room', roomRoute);
   // .use(route);
 
 app.listen(
