@@ -4,7 +4,8 @@ const reservationSchema = Joi.object({
   client: Joi.string().min(3).required(),
   room: Joi.string().required(),
   days: Joi.number().required(),
-  reservationDate: Joi.date().required(),
+  reservationDateStart: Joi.date().required(),
+  reservationDateEnd: Joi.date().required(),
   totalPrice: Joi.number().required(),
 });
 

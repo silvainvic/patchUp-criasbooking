@@ -33,7 +33,7 @@ services:
     volumes:
       - ./back-end:/usr/app
     working_dir: /usr/app
-    command: bash -c "npm install && npx sequelize db:migrate && npm run debug"
+    command: bash -c "npm install && npx sequelize db:migrate && npx sequelize db:seed:all && npm run debug"
   
   front-end:
     image: node:14
