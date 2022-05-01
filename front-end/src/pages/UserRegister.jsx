@@ -35,6 +35,16 @@ export default function UserRegister() {
     }
   };
 
+  const userExists = (message) => {
+    alert(message);
+    navigate('/login');
+  };
+
+  const UserRegisteredSuccess = (message) => {
+    alert(message);
+    navigate('/');
+  }
+
   useEffect(() => {
     const dataApi = getLocalStorage('Token');
 
@@ -50,7 +60,10 @@ export default function UserRegister() {
           <img src={imgLogo} alt="imagem-logo-criasbooking" />
         </div>
         <Forms history={history.pathname} getDataForm={getDataForm} />
-        {registerState && <h1>{registerState}</h1>}
+        {registerState
+          && (registerState.length > 30
+          ? UserRegisteredSuccess(registerState)
+          : userExists(registerState))}
       </div>
       <Footer />
     </>
