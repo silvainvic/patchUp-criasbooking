@@ -20,7 +20,7 @@ export default function IntroHome() {
               text-xl
               text-gray-600"
           >
-            O CriasBooking ajuda você a encontrar hotéis baratos, aluguéis de férias, pousadas, resorts e muito mais.
+            O CriasBooking ajuda você a encontrar hotéis baratos, pousadas, resorts e muito mais.
           </h3>
         </p>
         <p>
