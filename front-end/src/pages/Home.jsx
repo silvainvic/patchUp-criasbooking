@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header';
+import IntroHome from '../components/IntroHome';
 import SelectReservation from '../components/SelectReservation';
 import { getLocalStorage } from '../service/serviceLocalStorage';
 
@@ -68,6 +69,7 @@ export default function Home() {
           })}
         </div>
         <SelectReservation />
+        <IntroHome />
       </div>
     );
   };
