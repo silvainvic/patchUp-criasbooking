@@ -26,9 +26,9 @@ export default function UserRegister() {
       registerInputPassword
     );
 
-    if (dataFetchApi.length > 1) {
-      setRegisterState(dataFetchApi[0]);
-      setLocalStorage('Token', dataFetchApi[1]);
+    if (dataFetchApi.token) {
+      setRegisterState(dataFetchApi.message);
+      setLocalStorage('Token', dataFetchApi.token);
     }
     if (dataFetchApi.length === 1) {
       setRegisterState(dataFetchApi[0]);
