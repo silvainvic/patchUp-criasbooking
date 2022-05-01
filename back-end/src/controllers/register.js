@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
   if (!message) {
     const token = createToken(data.email, data.password, ip);
 
-    return res.status(stt.STATUS_CREATED).json([mess.USER_REGISTER_OK, token]); //"Usuário cadastrado com sucesso!"
+    return res.status(stt.STATUS_CREATED).json({ message: mess.USER_REGISTER_OK, token}); //"Usuário cadastrado com sucesso!"
   }
 
   res.status(stt.STATUS_CONFLICT).json([message]); //"User already exists"
