@@ -22,7 +22,7 @@ export default function Header() {
       <div>
         <button
           type="button"
-          class="btn btn-outline btn-accent"
+          className="btn btn-outline btn-accent"
           onClick={ () => removeLocalStorage('Token') }
         >
           Sair

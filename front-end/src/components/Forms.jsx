@@ -41,7 +41,7 @@ export default function Forms({ history, getDataForm }) {
               className="flex justify-center space-x-12"
             >
               <input
-                class="
+                className="
                 bg-green-900
                 hover:bg-purple-900
                 text-white
@@ -55,7 +55,7 @@ export default function Forms({ history, getDataForm }) {
                 value="Enter"
               />
               <button
-                class="
+                className="
                   bg-green-900
                   hover:bg-purple-900
                   text-white
