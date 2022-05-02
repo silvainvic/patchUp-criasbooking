@@ -69,9 +69,17 @@ export default function Home() {
             );
           })}
         </div>
-        <SelectReservation />
-        <IntroHome />
-        <CardRooms />
+        <main id="main-home">
+          <section id="first-section-home">
+            <SelectReservation />
+          </section>
+          <section id="second-section-home">
+            <IntroHome />
+          </section>
+          <section id="third-section-home">
+            <CardRooms />
+          </section>
+        </main>
       </div>
     );
   };
