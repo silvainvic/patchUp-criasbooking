@@ -69,7 +69,10 @@ export default function Home() {
             );
           })}
         </div>
-        <main id="main-home">
+        <main
+          id="main-home"
+          className="w-full min-h-screen bg-colorP05Dark"
+        >
           <section id="first-section-home">
             <SelectReservation />
           </section>
