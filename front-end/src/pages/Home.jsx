@@ -5,6 +5,8 @@ import CardRooms from '../components/CardRooms';
 import Header from '../components/Header';
 import IntroHome from '../components/IntroHome';
 import SelectReservation from '../components/SelectReservation';
+import Footer from '../components/Footer';
+
 import { getLocalStorage } from '../service/serviceLocalStorage';
 
 export default function Home() {
@@ -30,7 +32,7 @@ export default function Home() {
 
   const selectRender = () => {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-colorP05Dark">
         <Header />
         <div className="carousel w-full h-96">
           {arrImgRoom.map((item, index) => {
@@ -83,6 +85,7 @@ export default function Home() {
             <CardRooms />
           </section>
         </main>
+        <Footer />
       </div>
     );
   };
