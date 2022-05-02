@@ -8,9 +8,9 @@ import savio from '../img/members/savio.jpg';
 
 export default function Footer() {
   return (
-    <footer class="border-t border-gray-600 bg-green-600 mt-10">
+    <footer className="border-t border-gray-600 bg-green-600 mt-10">
       <div
-        class="
+        className="
           container
           flex flex-col flex-wrap
           px-4
@@ -21,7 +21,7 @@ export default function Footer() {
           md:flex-row md:flex-nowrap
         "
       >
-        <div class="justify-between w-full mt-4 text-center lg:flex">
+        <div className="justify-between w-full mt-4 text-center lg:flex">
           <>
             <img
               src={ary}
@@ -82,8 +82,8 @@ export default function Footer() {
           })} */}
         </div>
       </div>
-      <div class="flex justify-center -mt-12">
-        <p class="text-base text-white">All rights reserved @</p>
+      <div className="flex justify-center -mt-12">
+        <p className="text-base text-white">All rights reserved @</p>
       </div>
     </footer>
   );

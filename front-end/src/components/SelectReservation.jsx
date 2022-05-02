@@ -51,13 +51,13 @@ export default function SelectReservation() {
           type="date"
           name="dateStart"
           placeholder="Data de entrada"
-          class="input input-bordered input-success w-full max-w-xs"
+          className="input input-bordered input-success w-full max-w-xs"
         />
         <input
           type="date"
           name="dateEnd"
           placeholder="Data de saída"
-          class="input input-bordered input-success w-full max-w-xs"
+          className="input input-bordered input-success w-full max-w-xs"
         />
       </form>
     </div>

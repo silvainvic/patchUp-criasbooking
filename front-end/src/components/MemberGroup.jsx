@@ -4,14 +4,14 @@ import { MdWeb } from 'react-icons/md';
 
 export default function MemberGroup(props) {
   return (
-    <div class="w-full px-4 lg:w-1/3 md:w-1/2">
-      <h2 class="mb-2 font-bold tracking-widest text-gray-900">{props.name}</h2>
-      <ul class="mb-8 space-y-2 text-sm list-none">
+    <div className="w-full px-4 lg:w-1/3 md:w-1/2">
+      <h2 className="mb-2 font-bold tracking-widest text-gray-900">{props.name}</h2>
+      <ul className="mb-8 space-y-2 text-sm list-none">
         <li className="flex justify-center items-center">
           <FaLinkedin />
           <a
             href={props.linkedin}
-            class="text-white hover:text-gray-800 ml-1"
+            className="text-white hover:text-gray-800 ml-1"
             target="_blank"
             rel="noreferrer"
           >
@@ -22,7 +22,7 @@ export default function MemberGroup(props) {
           <FaGithub />
           <a
             href={props.github}
-            class="text-white hover:text-gray-800 ml-1"
+            className="text-white hover:text-gray-800 ml-1"
             target="_blank"
             rel="noreferrer"
           >
@@ -33,7 +33,7 @@ export default function MemberGroup(props) {
           <MdWeb />
           <a
             href={props.portfolio}
-            class="text-white hover:text-gray-800 ml-1"
+            className="text-white hover:text-gray-800 ml-1"
             target="_blank"
             rel="noreferrer"
           >
