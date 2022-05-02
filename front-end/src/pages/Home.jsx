@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CardRooms from '../components/CardRooms';
 
 import Header from '../components/Header';
 import IntroHome from '../components/IntroHome';
@@ -70,6 +71,7 @@ export default function Home() {
         </div>
         <SelectReservation />
         <IntroHome />
+        <CardRooms />
       </div>
     );
   };
