@@ -1,6 +1,7 @@
 const URL_CRIAS_REGISTER = 'http://localhost:3001/register';
 const URL_CRIAS_LOGIN = 'http://localhost:3001/login';
 const URL_HOTEL = 'http://localhost:3001/hotels';
+const URL_HOTEL_ID = 'http://localhost:3001/hotels/';
 const URL_ROOM = 'http://localhost:3001/room';
 
 export async function fetchRegister(name, email, password) {
@@ -78,5 +79,21 @@ export async function fetchRooms() {
     })
     .then((rooms) => {
       return rooms;
+    });
+}
+
+export async function fetchHotelById(id) {
+  return fetch(URL_HOTEL_ID + id, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((hotel) => {
+      return hotel;
     });
 }
