@@ -23,7 +23,11 @@ export default function CardRooms(props) {
   }, []);
 
   return (
-    <div id="main-div-cardRooms" className="flex flex-col justify-center items-center">
+    <div
+      id="main-div-cardRooms"
+      className="
+      flex flex-col justify-center items-center"
+    >
       {rooms && rooms.map((room, index) => {
         return (
           <div
