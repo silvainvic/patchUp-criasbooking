@@ -14,33 +14,33 @@ services:
     ports:
       - ${MYSQL_PORT}:${MYSQL_PORT}
 
-  api-crias:
-    image: node:latest
-    container_name: api-crias
-    restart: always
-    depends_on:
-      - mysql
-    env_file:
-      - ./.env
-    ports:
-      - 3002:3002
-    environment:
-      - DB_HOST=mysql
-      - DB_NAME=reservas
-      - DB_USER=root
-      - DB_PASSWORD=rootroot
-      - SERVER_PORT=3002
-    volumes:
-      - ./api-crias:/usr/app
-    working_dir: /usr/app
-    command: bash -c "npm install && npx sequelize db:create && npx sequelize db:migrate && npm start"
+  # api-crias:
+  #   image: node:latest
+  #   container_name: api-crias
+  #   restart: always
+  #   depends_on:
+  #     - mysql
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - 3002:3002
+  #   environment:
+  #     - DB_HOST=mysql
+  #     - DB_NAME=reservas
+  #     - DB_USER=root
+  #     - DB_PASSWORD=rootroot
+  #     - SERVER_PORT=3002
+  #   volumes:
+  #     - ./api-crias:/usr/app
+  #   working_dir: /usr/app
+  #   command: bash -c "npm install && npx sequelize db:create && npx sequelize db:migrate && npm start"
 
   back-end:
     image: node:latest
     container_name: back-end
     restart: always
     depends_on:
-      - api-crias
+      - mysql
     env_file:
       - ./.env
     ports:
