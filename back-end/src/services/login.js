@@ -11,7 +11,7 @@ module.exports.login = async ({ email, password, ip }) => {
 
     if (!ip) return { code: 400, message: 'Invalid ip' };
 
-    const token = tokens.generate({ ip, name: user.name, email });
+    const token = tokens.generate({ ip, id: user.id, name: user.name, email });
 
     return { code: 200, token };
   } catch (error) {

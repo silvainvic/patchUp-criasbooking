@@ -9,7 +9,8 @@ module.exports.register = async ({ name, email, password, ip }) => {
     if (already) return { code: 409, message: 'User already exists' };
   
     const data = await User.create({ name, email, password });
-    data.token = tokens.generate({ ip, name, email });
+
+    data.token = tokens.generate({ ip, id: data.id, name, email });
     
     return { code: 201, data };
   } catch (error) {
