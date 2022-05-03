@@ -10,19 +10,36 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        notNull: false,
+        allowNull: false,
       },
       stars: {
-        type: Sequelize.STRING,
-        notNull: false,
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       state: {
         type: Sequelize.STRING,
-        notNull: false,
+        allowNull: false,
       },
       city: {
         type: Sequelize.STRING,
-        notNull: false,
+        allowNull: false,
+      },
+      district: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      userId: {
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        refereces: {
+          model: 'Users',
+          key: 'id',
+        }
       }
     });
   },
