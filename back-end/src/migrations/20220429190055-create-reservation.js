@@ -11,7 +11,10 @@ module.exports = {
       days: {
         type: Sequelize.INTEGER
       },
-      reservationDate: {
+      reservationDateStart: {
+        type: Sequelize.DATE
+      },
+      reservationDateEnd: {
         type: Sequelize.DATE
       },
       totalPrice: {

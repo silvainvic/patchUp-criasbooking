@@ -2,7 +2,12 @@
 
 const express = require('express');
 const cors = require('cors');
-const route = require('./src/routes');
+const routes = require('./src/routes');
+const { errors } = require('celebrate');
+const { error } = require('./src/middlewares/handlers/error');
+// const loginRoute = require('./src/routes/login');
+// const registerRoute = require('./src/routes/register');
+// const hotelsRoute = require('./src/routes/hotels');
 const app = express();
 
 app.use(cors());
@@ -12,11 +17,15 @@ app.use(cors());
 //   optionsSuccessStatus: 200,
 // };
 
-app.get('/', (req, res) => res.send('Hello World!'));
-
 app.use(express.json());
 
-app.use(route);
+app.use(routes);
+
+/* Middleware de erros do próprio do celebrate */
+app.use(errors());
+
+/* Middleware de erros próprio do aplicativo */
+app.use(error);
 
 app.listen(
   process.env.BACK_END_PORT,

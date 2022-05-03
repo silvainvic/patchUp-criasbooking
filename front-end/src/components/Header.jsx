@@ -1,8 +1,10 @@
 import React from "react";
 
+import { removeLocalStorage } from "../service/serviceLocalStorage";
+
 export default function Header() {
   return (
-    <div>
+    <header className="bg-teste flex justify-content bg-blue-700 w-11 min-h-full ">
       <div>
         <h1>Header 01</h1>
       </div>
@@ -12,6 +14,9 @@ export default function Header() {
       <div>
         <h1>Header 03</h1>
       </div>
-    </div>
+      <div>
+        <button type="button" onClick={ () => removeLocalStorage('Token') } >Sair</button>
+      </div>
+    </header>
   );
 }

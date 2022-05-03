@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     name: {
@@ -15,9 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, { timestamps: false});
 
-  User.associate = (models) => {
-    User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
-  };
+  User.associate = ({ Hotel }) => {
+    User.hasMany(Hotel, { as: 'hoteis', foreignKey: 'userId' });
+  }
+  
+  // User.associate = (models) => {
+  //   User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
+  // };
 
   return User;
 };

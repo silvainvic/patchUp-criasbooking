@@ -1,5 +1,16 @@
 // require('dotenv').config();
 
+
+// module.exports = {
+//   development: {
+//     username: 'root',
+//     password: 'root',
+//     database: 'criasbook',
+//     host: 'localhost',
+//     dialect: 'mysql',
+//   },
+// }
+
 module.exports = {
   development: {
     username: process.env.MYSQL_USER,

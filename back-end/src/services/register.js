@@ -1,18 +1,20 @@
 const { User } = require('../models');
-const jwt = require('jsonwebtoken');
-const res = require('express/lib/response');
 
-const jwtConfig = {
-  expiresIn: '1d',
-  algorithm: 'HS256',
-};
+const tokens = require('../middlewares/tokens');
 
-module.exports = async ({ name, email, password }) => {
-  const already = await User.findOne({ where: { email } });
+module.exports.register = async ({ name, email, password, ip }) => {
+  try {
+    const already = await User.findOne({ where: { email } });
 
-  if (already) return { code: 409, message: 'User already exists' };
-
-  const user = await User.create({ name, email, password });
+    if (already) return { code: 409, message: 'User already exists' };
   
-  return { data: user.dataValues };
+    const data = await User.create({ name, email, password });
+
+    data.token = tokens.generate({ ip, id: data.id, name, email });
+    
+    return { code: 201, data };
+  } catch (error) {
+    console.error(error.message);
+    return { code: 500, message: 'Erro interno do servidor' }
+  }
 }

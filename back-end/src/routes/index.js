@@ -1,17 +1,13 @@
-const register = require('../controllers/register');
-const login = require('../controllers/login');
-const consumeAPI = require('../controllers/consumeAPI');
-const { isValidInputs, isValidRegister } = require('../middlewares/schema');
-
 const route = require('express').Router();
 
-route.get('/reservations', (req, res) => {
-  return res.status(200).end();
-});
+const login = require('./login');
+const register = require('./register');
 
-route.post('/reservations', isValidInputs, consumeAPI);
+const hotels = require('./hotels');
 
-route.post('/login', login)
-route.post('/register', isValidRegister, register, login);
+route.use('/login', login);
+route.use('/register', register);
+
+route.use('/hotels', hotels);
 
 module.exports = route;

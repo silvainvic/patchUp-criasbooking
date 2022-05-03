@@ -1,9 +1,12 @@
 const service = require('../services/register');
+const ip = require('../services/getIp');
 
-module.exports = async ({ body: { name, email, password } }, res, next) => {
-  const { code, message, data } = await service({ name, email, password });
+module.exports.register = async (req, res, next) => {
+  req.body.ip = ip.getIp(req);
 
-  if (message) return res.status(code).json({ message });
+  const { code, message, data } = await service.register({ ...req.body });
 
-  next();
+  if (data) return res.status(code).json({ token: data.token });
+
+  next({ code, message });
 }
