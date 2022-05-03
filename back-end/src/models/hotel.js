@@ -9,14 +9,29 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     state: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     city: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    district: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, { timestamps: false });
   
+  Hotel.associate = ({ User }) => {
+    Hotel.belongsTo(User, {
+      as: 'user',
+      foreignKey: 'userId',
+    });
+  }
+
   return Hotel;
 };
