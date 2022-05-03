@@ -1,8 +1,18 @@
-// const register = require('../controllers/register');
-// const { isValidInputs, isValidRegister } = require('../middlewares/schema');
+const { celebrate, Joi, Segments } = require('celebrate');
 
-// const registerRoute = require('express').Router();
+const route = require('express').Router();
 
-// registerRoute.post('/', isValidRegister, register);
+const controller = require('../controllers/register');
 
-// module.exports = registerRoute;
+route.route('/').post(
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().min(3).required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(8).required(),
+    }
+  }),
+  controller.register
+);
+
+module.exports = route;
