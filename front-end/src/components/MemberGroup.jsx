@@ -5,7 +5,6 @@ import { MdWeb } from 'react-icons/md';
 export default function MemberGroup(props) {
   return (
     <div class="w-full px-4 lg:w-1/3 md:w-1/2">
-      {/* <img src={require(`./${props.image}`)} alt="" /> */}
       <h2 class="mb-2 font-bold tracking-widest text-gray-900">{props.name}</h2>
       <ul class="mb-8 space-y-2 text-sm list-none">
         <li className="flex justify-center items-center">
@@ -30,7 +29,7 @@ export default function MemberGroup(props) {
             GitHub
           </a>
         </li>
-        <li className="flex justify-center items-center">
+        {/* <li className="flex justify-center items-center">
           <MdWeb />
           <a
             href={props.portfolio}
@@ -40,7 +39,7 @@ export default function MemberGroup(props) {
           >
             Portfólio
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
