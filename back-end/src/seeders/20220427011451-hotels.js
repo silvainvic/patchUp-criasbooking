@@ -8,25 +8,38 @@ module.exports = {
         name: 'Hotel Ibis',
         stars: 2,
         state: 'Sao Paulo',
-        city: 'Sao Paulo'
+        city: 'Sao Paulo',
+        district: 'none',
+        address: 'none',
+        userId: 1
       },
       {
         name: 'Hotel Castro',
         stars: 4,
         state: 'Sao Paulo',
-        city: 'Caraguatatuba'
+        city: 'Caraguatatuba',
+        district: 'none',
+        address: 'none',
+        userId: 1
+
       },
       {
         name: 'Marina Park Hotel',
         stars: 5,
         state: 'Rio Grande do Sul',
-        city: 'Pelotas'
+        city: 'Pelotas',
+        district: 'none',
+        address: 'none',
+        userId: 2
       },
       {
         name: 'Natal Praia Hotel',
         stars: 4,
         state: 'Piaui',
-        city: 'Teresina'
+        city: 'Teresina',
+        district: 'none',
+        address: 'none',
+        userId: 3
       },
     ], {});
   },
