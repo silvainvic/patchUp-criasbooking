@@ -1,31 +1,25 @@
-const hotels = require('../services/hotels');
-const stt = require('../utils/status');
+const service = require('../services/hotels');
 
-const getAll = async (_req, res, next) => {
-  try {
-    const data = await hotels.getAll();
-    res.status(stt.STATUS_OK).send(data);
-  } catch (e) {
-    next(e);
-  }
-};
+module.exports.getAll = async (_req, res, next) => {
+  const { code, message, data } = await service.getAll();
 
-const getById = async (req, res, next) => {
-  try {
-    const data = await hotels.getById(req.params.id);
-    res.status(stt.STATUS_OK).json(data);
-  } catch (e) {
-    next(e);
-  }
+  if (data) return res.status(code).json(data);
+
+  next({ code, message });
 }
 
-const create = async (req, res, next) => {
-  try {
-    const data = await hotels.create(req.body);
-    res.status(stt.STATUS_CREATED).json(data);
-  } catch (e) {
-    next(e);
-  }
-};
+module.exports.getById = async ({ params: { id }}, res, next) => {
+  const { code, message, data } = await service.getById({ id });
 
-module.exports = { getAll, getById, create };
+  if (data) return res.status(code).json(data);
+
+  next({ code, message });
+}
+
+module.exports.create = async ({ body, headers }, res, next) => {
+  const { code, message, data } = await service.create({ ...body }, {...headers});
+
+  if (data) return res.status(code).end();
+
+  next({ code, message });
+}
