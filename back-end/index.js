@@ -27,12 +27,6 @@ app.use(errors());
 /* Middleware de erros próprio do aplicativo */
 app.use(error);
 
-// app
-//   .use('/login', loginRoute)
-//   .use('/register', registerRoute)
-//   .use('/hotels', hotelsRoute);
-//   // .use(route);
-
 app.listen(
   process.env.BACK_END_PORT,
   () => console.log(`Example app listening on port ${process.env.BACK_END_PORT}!`),
