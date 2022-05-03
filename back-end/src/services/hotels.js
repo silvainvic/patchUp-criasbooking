@@ -1,20 +1,54 @@
+const { User } = require('../models');
 const { Hotel } = require('../models');
 
-const getAll = async () => {
-  const hotels = await Hotel.findAll();
-  return hotels;
-};
+const tokens = require('../middlewares/tokens');
 
-const getById = async (id) => {
-  const hotel = await Hotel.findByPk(id);
-  if (!hotel) return { code: 404, message: 'Hotel does not exist' };
-  return hotel;
+module.exports.getAll = async () => {
+  try {
+    const data = await Hotel.findAll({
+      attributes: { exclude: ['userId'] },
+      include: [{ model: User, as: 'user', attributes: { exclude: 'password' }}]
+    });
+
+    return { code: 200, data };
+
+  } catch (error) {
+    console.error(error.message);
+
+    return { code: 500, message: 'Erro interno do servidor' };
+  }
 }
 
-const create = async ({ name, stars, state, city }) => {
-  const hotel = await Hotel.create({ name, stars, state, city });
-  return hotel;
-};
+module.exports.getById = async ({ id }) => {
+  try {
+    const data = await Hotel.findByPk(id, {
+      attributes: { exclude: ['userId'] },
+      include: [{ model: User, as: 'user', attributes: { exclude: 'password' }}]
+    });
 
+    if (!data) return { code: 404, message: 'Hotel does not exist' };
 
-module.exports = { getAll, getById, create };
+    return { code: 200, data };
+  } catch (error) {
+    console.error(error.message);
+
+    return { code: 500, message: 'Erro interno do servidor' };
+  }
+}
+
+module.exports.create = async (inputs, { authorization }) => {
+  try {
+
+    const { code, message, decoded } = tokens.validate(authorization);
+
+    if (!decoded) return { code, message };
+
+    const data = await Hotel.create({ ...inputs, userId: decoded.id })
+
+    return { code: 201, data };
+  } catch (error) {
+    console.error(error.message);
+
+    return { code: 500, message: 'Erro interno do servidor' };
+  }
+}
