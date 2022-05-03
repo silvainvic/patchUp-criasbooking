@@ -1,7 +1,17 @@
-const login = require('../controllers/login');
+const { celebrate, Joi, Segments } = require('celebrate');
 
-const loginRoute = require('express').Router();
+const route = require('express').Router();
 
-loginRoute.post('/', login);
+const controller = require('../controllers/login');
 
-module.exports = loginRoute;
+route.route('/').post(
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().min(8).required(),
+    }
+  }),
+  controller.login
+);
+
+module.exports = route;

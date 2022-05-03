@@ -1,15 +1,8 @@
-const register = require('../controllers/register');
-const login = require('../controllers/login');
-const consumeAPI = require('../controllers/consumeAPI');
-const { isValidInputs, isValidRegister } = require('../middlewares/schema');
-
 const route = require('express').Router();
 
-// route.get('/reservations', (req, res) => {
-//   return res.status(200).end();
-// });
+const login = require('./login');
 
-route.post('/login', login).post('/register', isValidRegister, register);
-// .post('/reservations', isValidInputs, consumeAPI) // API fora do "ar"
+route.use('/login', login);
+
 
 module.exports = route;
