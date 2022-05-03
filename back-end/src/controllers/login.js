@@ -1,12 +1,11 @@
 const { login } = require('../services/login');
-const { getIp } = require('../services/getIp');
+const ip = require('../services/getIp');
 
-module.exports  = async (req, res, next) => {
-  try {
-    const ip = getIp(req);
-    const { token } = await login(req.body, ip);
-    res.status(200).json({ token });
-  } catch (e) {
-    next(e);
-  }
+module.exports.login = async (req, res, next) => {
+  req.body.ip = ip.getIp(req);
+
+  const { code, message, token } = await login({ ...req.body });
+  if (token) res.status(code).json({ token });
+
+  next({ code, message });
 };
