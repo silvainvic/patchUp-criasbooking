@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, { timestamps: false});
 
+  User.associate = ({ Hotel }) => {
+    User.hasMany(Hotel, { as: 'hoteis', foreignKey: 'userId' });
+  }
+  
   // User.associate = (models) => {
   //   User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
   // };
