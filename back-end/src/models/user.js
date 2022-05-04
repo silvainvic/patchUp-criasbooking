@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define('User', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -11,17 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-  }, { timestamps: false});
+    }
+  }, { timestamps: false, tableName: 'users' });
 
-  User.associate = ({ Hotel }) => {
-    User.hasMany(Hotel, { as: 'hoteis', foreignKey: 'userId' });
+  User.associate = ({ Group, Location }) => {
+    User.belongsTo(Group, { as: 'group', foreignKey: 'groupId' });
+    User.hasMany(Location, { as: 'locations', foreignKey: 'userId' });
   }
-  
-  // User.associate = (models) => {
-  //   User.hasMany(models.Reservation, { foreignKey: 'reservationId', as: 'reservations' });
-  // };
 
   return User;
-};
-
+}
