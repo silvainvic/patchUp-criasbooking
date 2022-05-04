@@ -8,6 +8,6 @@ const hotels = require('./hotels');
 route.use('/login', login);
 route.use('/register', register);
 
-route.use('/hotels', hotels);
+// route.use('/hotels', hotels);
 
 module.exports = route;
