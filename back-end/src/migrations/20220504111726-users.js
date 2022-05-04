@@ -21,6 +21,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      token: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        default:  'invalid'
+      },
       groupId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
