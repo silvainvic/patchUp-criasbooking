@@ -10,7 +10,7 @@ module.exports.register = async ({ name, email, password, ip }) => {
   
     const data = await User.create({ name, email, password });
 
-    data.token = tokens.generate({ ip, id: data.id, name, email });
+    data.token = tokens.generate({ ip, id: data.id, name, email, level: 0 });
     
     return { code: 201, data };
   } catch (error) {
