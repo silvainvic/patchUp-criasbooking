@@ -1,38 +1,22 @@
-module.exports = (sequelize, DataTypes) => {
-  const Location = sequelize.define('Location', {
+module.exports = (Sequelize, DataTypes) => {
+  const Location = Sequelize.define('Location', {
     name: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING,
     },
     stars: {
+      allowNull: false,
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
-    state: {
+    type: {
+      allowNull: false,
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    district: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    images: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-  }, { timestamps: false });
+  }, { timestamps: false, tableName: 'locations' });
 
-  Location.associate = ({ User, Type }) => {
-    Location.belongsTo(User, { as: 'user', foreignKey: 'userId' });
-    Location.belongsTo(Type, { as: 'type', foreignKey: 'typeId' });
+  Location.associate = (models) => {
+    Location.belongsTo(models.Address, { as: 'address', foreignKey: 'addressId' });
+    Location.hasMany(models.Product, { as: 'products', foreignKey: 'locationId' });
   }
 
   return Location;
