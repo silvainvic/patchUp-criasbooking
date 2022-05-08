@@ -1,15 +1,13 @@
 const { Address, City, Location, State } = require('../models');
-const { UNAUTHORIZED, STATUS_CREATED } = require('../utils/status');
+const { UNAUTHORIZED, STATUS_CREATED, STATUS_OK, INTERNAL_SERVER_ERROR } = require('../utils/status');
 const tokens = require('../utils/tokens');
 
 const getState = async (state) => {
   const data = await State.findOne({ where: { name: state } });
 
-  console.log({ data });
-
   if (!data) {
     const created = await State.create({ name: state });
-    return { idState: created.dataValues.id }
+    return { idState: created.dataValues.id };
   }
 
   return { idState: data.id };
@@ -43,20 +41,30 @@ module.exports.create = async ({ authorization, location, address }) => {
     const { code, message, decoded } = tokens.decode(authorization);
 
     if (!decoded) return { code, message };
-    if (decoded.level < 10)
-      return { code: UNAUTHORIZED, message: 'Não autorizado' };
+    if (decoded.level < 10) return { code: UNAUTHORIZED, message: 'Not authorized' };
 
     const { idState } = await getState(address.state);
-    console.log('ID STATE => ', idState);
     const { cityId } = await getCity(idState, address.city);
 
     const addressId = await setAddress(cityId, address);
 
     await Location.create({ ...location, addressId });
 
-    return { code: STATUS_CREATED, message: 'Locação criada com sucesso' };
+    return { code: STATUS_CREATED, message: 'Location created successfully' };
   } catch (error) {
     console.log(error.message);
-    return { code: 500, message: error.message };
+    return { code: INTERNAL_SERVER_ERROR, message: error.message };
+  }
+};
+
+module.exports.remove = ({ authorization, id }) => {
+  try {
+    const { code, message, decoded } = tokens.decode(authorization);
+    if (!decoded) return { code, message };
+    const data = Location.destroy({ where: { id } });
+    return { code: STATUS_OK, data };
+  } catch (error) {
+    console.error(error.message);
+    return { code: INTERNAL_SERVER_ERROR, message: error.message };
   }
 };
