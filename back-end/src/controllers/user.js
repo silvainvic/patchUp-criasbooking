@@ -7,3 +7,11 @@ module.exports.update = async ({ headers: { authorization }, body }, res, next) 
 
   next({ code, message });
 };
+
+module.exports.delete = async ({ headers: { authorization }}, res, next) => {
+
+  const { code, message, data } = await service.delete({ authorization });
+  if (data) return res.status(code).end();
+
+  next({ code, message });
+};

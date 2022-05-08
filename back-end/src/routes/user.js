@@ -5,15 +5,22 @@ const o = require('../middlewares/auth');
 const controller = require('../controllers/user');
 const schema = require('../middlewares/validations/schemas');
 
-route.route('/me').put(celebrate({
-  [Segments.HEADERS]: {
-    ...schema.headers,
-    authorization: Joi.string().required(),
-  },
-  [Segments.BODY]: {
-    name: Joi.string().optional(),
-    email: Joi.string().optional(),
-  }
-}), o.auth, controller.update);
+route.route('/me')
+  .put(celebrate({
+    [Segments.HEADERS]: {
+      ...schema.headers,
+      authorization: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      name: Joi.string().optional(),
+      email: Joi.string().optional(),
+    }
+  }), o.auth, controller.update)
+  .delete(celebrate({
+    [Segments.HEADERS]: {
+      ...schema.headers,
+      authorization: Joi.string().required(),
+    },
+  }), o.auth, controller.delete);
 
 module.exports = route;
