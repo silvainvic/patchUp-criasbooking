@@ -60,8 +60,12 @@ module.exports.create = async ({ authorization, location, address }) => {
 module.exports.remove = ({ authorization, id }) => {
   try {
     const { code, message, decoded } = tokens.decode(authorization);
+
     if (!decoded) return { code, message };
+    if (decoded.level < 10) return { code: UNAUTHORIZED, message: 'Not authorized' };
+
     const data = Location.destroy({ where: { id } });
+
     return { code: STATUS_OK, data };
   } catch (error) {
     console.error(error.message);
