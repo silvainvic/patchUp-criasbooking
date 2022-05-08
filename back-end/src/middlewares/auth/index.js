@@ -1,32 +1,40 @@
 const { User } = require('../../models');
 const tokens = require('../../utils/tokens');
 
-module.exports.auth = async ({ headers: { authorization } }, res, next) => {
-  const { code, message } = await module.exports.auth({ authorization });
+const isValid = (authorization) => {
+  const { code, message, decoded } = tokens.decode(authorization);
+  
+  if (decoded) return { decoded };
 
-  if (message) next({ code, message });
-
-  next();
+  return { code, message: 'Invalid token' }
 }
 
-module.exports.auth = async ({ authorization }) => {
+const isTkUser = async (decoded, authorization) => {
+  const user = await User.findByPk(decoded.id);
+  if (!user || (authorization !== user.token)) return { code: 401, message: 'Invalid token' };
+
+  return { code: 200 };
+}
+
+const validations = async ({ authorization }) => {
   try {
-    console.log({ authorization });
-    if (authorization) {
-      const { code, message, decoded } = tokens.decode(authorization);
-      console.log({ decoded });
-      return !decoded && { code, message: 'Invalid token' };
-    }
+    const valid = isValid(authorization);
+    if (valid.message) return { code: valid.code, message: valid.message };
     
-    const data = await User.findOne({ where: { id: decoded.id } });
+    const { code, message } = await isTkUser(valid.decoded, authorization);
+    if (message) return { code, message };
 
-    if (!data || (authorization !== data.token)) return { code: 401, message: 'Invalid token' };
-    const { code, message, decoded } = tokens.decode(data.token);
-    if (!decoded) return { code, message: 'Invalid token' }
-
-    return { code: 200 };
+    return { code };
   } catch (error) {
     console.error(error.message);
     return { code: 500, message: 'Erro interno do servidor' }
   }
+}
+
+module.exports.auth = async ({ headers: { authorization } }, _res, next) => {
+  const { code, message } = await validations({ authorization });
+
+  if (message) next({ code, message });
+
+  next();
 }
