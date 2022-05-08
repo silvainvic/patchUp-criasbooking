@@ -19,6 +19,24 @@ module.exports.update = async ({ authorization, payload }) => {
   }
 }
 
+module.exports.updatePassword = async ({ authorization, payload }) => {
+  try {
+    const { code, message, decoded } = tokens.decode(authorization);
+    if (!decoded) return { code, message };
+
+    const user = await User.findByPk(decoded.id);
+  
+    if (user.password !== payload.password) return { code: 401, message: 'Invalid field' };
+
+    await user.update({ password: payload.newPassword });
+
+    return  { code: 200, data: 'updated success' }
+  } catch (error) {
+      console.error(error.message);
+      return { code: 500, message: 'Erro interno do servidor' };
+  }
+}
+
 module.exports.delete = async ({ authorization }) => {
   try {
     const { code, message, decoded } = tokens.decode(authorization);
@@ -32,5 +50,3 @@ module.exports.delete = async ({ authorization }) => {
       return { code: 500, message: 'Erro interno do servidor' };
   }
 }
-
-module.exports.updatePassword = async ({ authorization, payload }) => {}
