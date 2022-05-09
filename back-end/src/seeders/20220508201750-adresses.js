@@ -17,7 +17,7 @@ module.exports = {
         number: '859',
         complement: null,
         cep: '96010150',
-        cityId: '3'
+        cityId: 3
       },
       {
         district: 'Vermelha',
@@ -25,7 +25,7 @@ module.exports = {
         number: '1424',
         complement: 'SALA 101',
         cep: '64018-290',
-        cityId: '2'
+        cityId: 2
       },
     ], {})
   },
