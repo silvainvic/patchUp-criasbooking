@@ -2,30 +2,27 @@ const { Address, City, Location, State } = require('../models');
 const { UNAUTHORIZED, STATUS_CREATED, STATUS_OK, INTERNAL_SERVER_ERROR } = require('../utils/status');
 const tokens = require('../utils/tokens');
 
-const getState = async (state) => {
+const setState = async (state) => {
   const data = await State.findOne({ where: { name: state } });
 
-  if (!data) {
-    const created = await State.create({ name: state });
-    return { idState: created.dataValues.id };
-  }
+  if (!data) return { id } = State.create({ name: state });
 
-  return { idState: data.id };
-};
+  return { id: data.id };
+}
 
-const getCity = async (idState, city) => {
+const setCity = async (city, state) => {
   const data = await City.findOne({ where: { name: city } });
 
-  if (!data) {
-    const created = await City.create({ name: city, stateId: idState });
-    return { cityId: created.dataValues.id };
-  }
+  if (!data) return { id } = City.create({ name: city, stateId: state });
 
-  return { cityId: data.id };
-};
+  return { id: data.id };
+}
 
-const setAddress = async (cityId, address) => {
-  const { id: addressId } = await Address.create({
+const setAddress = async (address) => {
+  const { id: stateId } = await setState(address.state);
+  const { id: cityId } = await setCity(address.city, stateId);
+  
+  return { id } = Address.create({
     district: address.district,
     street: address.street,
     number: address.number,
@@ -33,20 +30,33 @@ const setAddress = async (cityId, address) => {
     cep: address.cep,
     cityId: cityId,
   });
-  return addressId;
-};
+}
+
+const verifyGrant = (authorization) => {
+  const { code, message, decoded } = tokens.decode(authorization);
+
+  if (!decoded) return { code, message };
+  if (decoded.level < 10) return { code: UNAUTHORIZED, message: 'Not authorized' };
+
+  return { code, message };
+}
+
+const verifyIsOwner = async (authorization, id) => {
+  const { code, message, decoded } = tokens.decode(authorization);
+  if (!decoded) return { code, message };
+
+  const { userId } = await Location.findByPk(id);
+  if ((decoded.id !== userId) || decoded.level < 100) return false;
+
+  return true;
+}
 
 module.exports.create = async ({ authorization, location, address }) => {
   try {
-    const { code, message, decoded } = tokens.decode(authorization);
+    const { code, message } = verifyGrant(authorization);
+    if (message) return { code, message };
 
-    if (!decoded) return { code, message };
-    if (decoded.level < 10) return { code: UNAUTHORIZED, message: 'Not authorized' };
-
-    const { idState } = await getState(address.state);
-    const { cityId } = await getCity(idState, address.city);
-
-    const addressId = await setAddress(cityId, address);
+    const { id: addressId } = await setAddress(address);
 
     await Location.create({ ...location, addressId });
 
@@ -57,12 +67,13 @@ module.exports.create = async ({ authorization, location, address }) => {
   }
 };
 
-module.exports.remove = ({ authorization, id }) => {
+module.exports.remove = async ({ authorization, id }) => {
   try {
-    const { code, message, decoded } = tokens.decode(authorization);
+    const { code, message } = verifyGrant(authorization);
+    if (message) return { code, message };
 
-    if (!decoded) return { code, message };
-    if (decoded.level < 10) return { code: UNAUTHORIZED, message: 'Not authorized' };
+    const isOwn = await verifyIsOwner(authorization, id);
+    if (!isOwn) return { code: UNAUTHORIZED, message: 'Not authorized remove' };
 
     const data = Location.destroy({ where: { id } });
 
