@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const config = require('./config');
 
-module.exports.validate = (token) => {
+module.exports.decode = (token) => {
   try {
     return { decoded: jwt.verify(token, config.secret) };
     

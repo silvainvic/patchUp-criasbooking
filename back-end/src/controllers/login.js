@@ -1,5 +1,5 @@
 const service = require('../services/login');
-const ip = require('../services/getIp');
+const ip = require('../utils/getIp');
 
 module.exports.login = async (req, res, next) => {
   req.body.ip = ip.getIp(req);

@@ -1,7 +1,8 @@
 'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Hotels', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,38 +13,33 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      stars: {
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      token: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        default:  'invalid'
+      },
+      groupId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      district: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      userId: {
         primaryKey: true,
-        type: Sequelize.INTEGER,
         allowNull: false,
-        refereces: {
-          model: 'Users',
-          key: 'id',
+        defaultValue: 1,
+        references: {
+          model: 'groups',
+          key: 'id'
         }
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Hotels');
+
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('users');
   }
 };

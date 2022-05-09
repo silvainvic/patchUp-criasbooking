@@ -2,7 +2,7 @@ const { celebrate, Joi, Segments } = require('celebrate');
 
 const route = require('express').Router();
 
-const controller = require('../controllers/register');
+const controller = require('../controllers/signup');
 
 route.route('/').post(
   celebrate({
