@@ -29,6 +29,15 @@ module.exports = {
           model: 'adresses',
           key: 'id',
         }
+      },
+      userId: {
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        }
       }
     });
   },
