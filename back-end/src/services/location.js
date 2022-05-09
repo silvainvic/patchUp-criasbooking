@@ -2,25 +2,9 @@ const { Address, City, Location, State } = require('../models');
 const { UNAUTHORIZED, STATUS_CREATED, STATUS_OK, INTERNAL_SERVER_ERROR } = require('../utils/status');
 const tokens = require('../utils/tokens');
 
-const setState = async (state) => {
-  const data = await State.findOne({ where: { name: state } });
-
-  if (!data) return { id } = State.create({ name: state });
-
-  return { id: data.id };
-}
-
-const setCity = async (city, state) => {
-  const data = await City.findOne({ where: { name: city } });
-
-  if (!data) return { id } = City.create({ name: city, stateId: state });
-
-  return { id: data.id };
-}
-
 const setAddress = async (address) => {
-  const { id: stateId } = await setState(address.state);
-  const { id: cityId } = await setCity(address.city, stateId);
+  const [{ id: stateId}] = await State.findOrCreate({ where: { name: address.state } });
+  const [{ id: cityId }] = await City.findOrCreate({ where: { name: address.city, stateId: stateId } }); 
   
   return { id } = Address.create({
     district: address.district,
@@ -46,9 +30,10 @@ const verifyIsOwner = async (authorization, id) => {
   if (!decoded) return { code, message };
 
   const { userId } = await Location.findByPk(id);
-  if ((decoded.id !== userId) || decoded.level < 100) return false;
 
-  return true;
+  if (userId == decoded.id || decoded.level >= 100) return true;
+
+  return false;
 }
 
 module.exports.create = async ({ authorization, location, address }) => {
@@ -57,8 +42,9 @@ module.exports.create = async ({ authorization, location, address }) => {
     if (message) return { code, message };
 
     const { id: addressId } = await setAddress(address);
-
-    await Location.create({ ...location, addressId });
+    
+    const { decoded: { id: userId } } = tokens.decode(authorization);
+    await Location.create({ ...location, addressId, userId, });
 
     return { code: STATUS_CREATED, message: 'Location created successfully' };
   } catch (error) {
