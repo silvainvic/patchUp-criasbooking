@@ -16,7 +16,7 @@ module.exports = (Sequelize, DataTypes) => {
 
   Location.associate = (models) => {
     Location.belongsTo(models.Address, { as: 'address', foreignKey: 'addressId' });
-    Location.belongsTo(models.User, { as: 'user', foreignKey: 'userId ' });
+    Location.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
     Location.hasMany(models.Product, { as: 'products', foreignKey: 'locationId' });
   }
 
